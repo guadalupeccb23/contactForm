@@ -2,34 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
-    <title>Contact Form</title>
-        
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
-
-<body>
-    <section id="contact-me" class="contact">
-        <section class="content">
-            <section id="contact-me2">
-                <h2>CONTACT ME</h2>
-            </section>
-            <section class="contactForm">
-                <form class="form" action="#">
-                    <p id="formErr"></p><p id="formOK"></p>
-                    <p>Name*: <input type="text" placeholder="Write your name here.." id="idName"></p>
-                    <p>Email*: <input type="email" placeholder="Let us know how to contact you back.." id="idEmail"></p>
-                    <p>Message*: <input type="text" placeholder="What would you like to tell us.." id="idMessage"></p>
-                    <button type="button" id="sendEmailButton">Send Message</button>
-                </form>
-            </section>
-        </section>
-    </section>
-
-    <script src="https://smtpjs.com/v3/smtp.js"></script>
-    <script src="js/contactScript.js">
-        
-    </script>
+<body>  
+    <form id="contactForm" action="https://formspree.io/f/manqgjor" 
+        method="POST" onsubmit="return sendForm(event);">
+        <label>Name:
+            <input type="text" name="name" id="name" required>
+        </label>
+        <label>Email:
+            <input type="email" name="email" required>
+        </label>
+        <label>Message:
+            <textarea name="message" required></textarea>
+        </label>
+        <button type="submit">Submit</button>
+        <p id="form-message"></p>
+    </form>
+    
+    <script src="js/script.js"></script>
+    
 </body>
 </html>

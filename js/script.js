@@ -2,7 +2,7 @@
 
 // 1) Replace with your Netlify site name
 const NETLIFY_FUNCTION_URL =
-  "https://YOUR-NETLIFY-SITE.netlify.app/.netlify/functions/send-email";
+  "https://contact-form-gpe.netlify.app/.netlify/functions/send-email";
 
 // 2) IDs from your existing HTML
 const FORM_ID = "contactForm";
