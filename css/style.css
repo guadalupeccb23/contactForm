@@ -2,7 +2,7 @@
 body {
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(135deg, #1c1f2b, #2a3d66);
-    min-height: 100vh;
+    min-height: 120vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,10 +13,11 @@ body {
 form {
     background: rgba(255, 255, 255, 0.1);
     padding: 20px;
+    margin-right: 20px;
     border-radius: 12px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     width: 100%;
-    max-width: 400px;
+    max-width: 450px;
     display: flex;
     flex-direction: column;
     backdrop-filter: blur(10px);
@@ -33,7 +34,7 @@ label {
 
 /* Inputs y textarea */
 input, textarea {
-    width: 100%;
+    width: 95%;
     padding: 12px;
     margin-bottom: 15px;
     border: 1px solid rgba(255, 255, 255, 0.4);
