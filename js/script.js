@@ -31,18 +31,17 @@ function showMessage(text) {
 
 form.addEventListener("submit", async (event) => {
   event.preventDefault(); // stop page reload
-
   const name = document.getElementById(NAME_ID)?.value.trim();
   const email = document.getElementById(EMAIL_ID)?.value.trim();
   const message = document.getElementById(MESSAGE_ID)?.value.trim();
   const website = document.getElementById(HONEYPOT_ID)?.value.trim() || "";
-
+  
   // Simple validation
   if (!name || !email || !message) {
     showMessage("Please complete all fields.");
     return;
   }
-
+alert("se valido");
   showMessage("Sending...");
 
   try {

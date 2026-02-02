@@ -12,20 +12,23 @@
             <input type="text" name="name" id="name" required>
         </label>
         <label>Email:
-            <input type="email" name="email" required>
+            <input type="email" name="email" id="email" required>
         </label>
         <label>Message:
-            <textarea name="message" required></textarea>
+            <textarea name="message" id="message" required></textarea>
         </label>
-        <button type="submit">Submit</button>
         <p id="form-message"></p>
-        <input type="text" id="website" name="website" style="display:none">
+        
+        <!-- Honeypot (anti-spam). Hide with CSS. -->
+        <input id="website" name="website" type="hidden" autocomplete="off" >
 
-        <div id="STATUS_ID"><strong></strong></div>
+        <button type="submit">Submit</button>
+
+        <p id="formStatus" role="status" style="color: aliceblue;"></p>
+
     </form>
     
-    <p src="js/script.js" style="color: beige;"></p>
+    <script src="js/script.js"></script>
     
 </body>
-
 </html>
