@@ -1,7 +1,27 @@
+const corsHeaders = {
+  "Access-Control-Allow-Origin": "https://guadalupeccb23.github.io",
+  "Access-Control-Allow-Headers": "Content-Type",
+  "Access-Control-Allow-Methods": "POST, OPTIONS"
+};
+
+
 exports.handler = async (event) => {
+  // CORS preflight
+  if (event.httpMethod === "OPTIONS") {
+    return {
+      statusCode: 200,
+      headers: corsHeaders,
+      body: ""
+    };
+  }
+
   // Only POST
   if (event.httpMethod !== "POST") {
-    return { statusCode: 405, body: JSON.stringify({ error: "Method not allowed" }) };
+     return {
+        statusCode: 405,
+        headers: corsHeaders,
+        body: JSON.stringify({ error: "Method not allowed" })
+    };
   }
 
   try {
@@ -9,17 +29,17 @@ exports.handler = async (event) => {
 
     // Honeypot check (spam)
     if (website && website.length > 0) {
-      return { statusCode: 200, body: JSON.stringify({ ok: true }) };
+      return { statusCode: 200, headers: corsHeaders, body: JSON.stringify({ ok: true }) };
     }
 
     // Validate
     if (!name || !email || !message) {
-      return { statusCode: 400, body: JSON.stringify({ error: "Missing fields" }) };
+      return { statusCode: 400, headers: corsHeaders, body: JSON.stringify({ error: "Missing fields" }) };
     }
 
     const apiKey = process.env.ELASTIC_EMAIL_API_KEY;
     if (!apiKey) {
-      return { statusCode: 500, body: JSON.stringify({ error: "Server is missing API key" }) };
+      return { statusCode: 500, headers: corsHeaders, body: JSON.stringify({ error: "Server is missing API key" }) };
     }
 
     // Teacher: change these
@@ -27,7 +47,7 @@ exports.handler = async (event) => {
     const FROM_EMAIL = "guadalupe.ccb23@gmail.com"; // must be allowed in Elastic Email
 
     if (!TO_EMAIL || !FROM_EMAIL) {
-      return { statusCode: 500, body: JSON.stringify({ error: "Server is missing TO/FROM email" }) };
+      return { statusCode: 500, headers: corsHeaders, body: JSON.stringify({ error: "Server is missing TO/FROM email" }) };
     }
 
     const subject = `New contact form message from ${name}`;
@@ -62,13 +82,14 @@ exports.handler = async (event) => {
     if (!eeRes.ok) {
       return {
         statusCode: 502,
+        headers: corsHeaders,
         body: JSON.stringify({ error: "Email service error", details: eeData })
       };
     }
 
-    return { statusCode: 200, body: JSON.stringify({ ok: true }) };
+    return { statusCode: 200, headers: corsHeaders, body: JSON.stringify({ ok: true }) };
   } catch (err) {
-    return { statusCode: 500, body: JSON.stringify({ error: "Server error" }) };
+    return { statusCode: 500, headers: corsHeaders, body: JSON.stringify({ error: "Server error" }) };
   }
 };
 
